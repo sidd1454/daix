@@ -1,0 +1,1484 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Digital Assets Information Exchange</title>
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+            integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+            crossorigin="anonymous"
+        />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <link
+            href="https://fonts.googleapis.com/css?family=Roboto"
+            rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="node_modules/bootstrap-select/dist/css/bootstrap-select.min.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/app.css" />
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            var xmlhttp = new XMLHttpRequest();
+            var url = 'https://api.coindesk.com/v1/bpi/currentprice.json';
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var json = JSON.parse(this.responseText);
+                    parseJson(json);
+                }
+            };
+            xmlhttp.open('GET', url, true);
+            xmlhttp.send();
+            function parseJson(json) {
+                // var time = "<b>Last Updated : " + json["time"]["updated"] + "</b>";
+                var usdValue = '$' + json['bpi']['USD']['rate'];
+                document.getElementById('data').innerHTML = usdValue;
+            }
+        </script>
+
+        <!-- Header -->
+        <nav class="navbar navbar-expand-lg navbar-light py-md-4">
+            <a href="/" class="navbar-brand"
+                ><img src="assets/images/Logo.png" width="144" alt="Daix"
+            /></a>
+            <div class="dropdown mr-auto">
+                <button
+                    class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                >
+                    EN
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="http://www.daix.io">EN</a>
+                    <a class="dropdown-item" href="http://www.daix.io/zh">ZH</a>
+                    <a class="dropdown-item" href="http://www.daix.io/ko">KO</a>
+                </div>
+            </div>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto mr-3">
+                    <li class="nav-item">
+                        <a
+                            class="nav-link js-smooth-link"
+                            href="#products"
+                            aria-selected="true"
+                            >Product</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link js-smooth-link"
+                            href="#research"
+                            aria-selected="false"
+                            >Insights</a
+                        >
+					</li>
+					<li class="nav-item">
+                        <a
+                            class="nav-link js-smooth-link"
+                            href="#pricing"
+                            aria-selected="false"
+                            >Pricing</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link js-smooth-link"
+                            href="http://daix.io/contact/"
+							aria-selected="false"
+							data-toggle="modal"
+							data-target="#contactModal"
+                            >Contact</a
+						>
+                    </li>
+                    <li class="nav-item sm-ml-3">
+                        <a
+                            class="btn btn-primary"
+                            href="http://app.daix.io/#/login"
+                            role="button"
+                            >Sign Up</a
+                        >
+                    </li>
+				</ul>
+                <!-- <form class="my-2 my-lg-0">
+					<select class="js-bs-select" data-live-search="true" data-dropdownAlignRight="auto" title="Search">
+						<option value="http://www.google.com">Bitcoin</option>
+						<option value="http://www.nytimes.com">Litecoin</option>
+						<option value="http://www.yahoo.com">Dogecoin</option>
+					</select>
+				</form> -->
+
+						<form class="form-inline my-2 my-lg-0">
+							<div class="input-group">
+								<input type="text" class="form-control typeahead" name="query" id="query" placeholder="Start typing something to search..." data-provide="typeahead" autocomplete="off">
+								<div class="input-group-append">
+									<span class="input-group-text js-typeahead"><i class="fa fa-search"></i></span>
+								</div>
+							</div>
+						</form>
+
+
+            </div>
+        </nav>
+
+		<!-- Hero -->
+        <div class="hero__wrapper">
+            <svg
+                class="hero__photo"
+                viewBox="0 0 1444 763"
+                preserveAspectRatio="xMidYMax slice"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+                <defs>
+                    <pattern
+                        width="100%"
+                        height="100%"
+                        id="heroPhoto"
+                        patternUnits="userSpaceOnUse"
+                    >
+                        <image
+                            x="0"
+                            y="0"
+                            width="100%"
+                            height="100%"
+                            preserveAspectRatio="xMaxYMax slice"
+                            xlink:href="assets/images/map.png"
+                        />
+                    </pattern>
+                </defs>
+                <svg>
+                    <path
+                        class="photo"
+                        style="width:100%; height:85vh;"
+                        d="M0,0 L1444,0 L1444,627 C1444,627 1183.11,762.899 721,762 C273.354,761.129 0,627 0,627 L0,0 Z"
+                        fill="url(#heroPhoto)"
+                    ></path>
+                </svg>
+            </svg>
+            <section
+                class="jumbotron jumbotron-fluid position-relative bg-transparent"
+            >
+                <div class="container text-center text-light px-5 py-5">
+                    <h1 class="display-4">
+                        Actionable Intelligence for the Cryptocurrency Markets
+                    </h1>
+                    <ul class="list-reset list-middot mt-4">
+                        <li class="d-inline">Market Analytics</li>
+                        <li class="d-inline">Currency Fundamentals</li>
+                        <li class="d-inline">Aggregated News</li>
+                        <li class="d-inline">Explorer Statistics</li>
+
+					</ul>
+					<ul class="list-reset list-middot mt-4">
+						<li class="d-inline">Portfolio Management</li>
+						<li class="d-inline">Encrypted Chat</li>
+					</ul>
+                    <div
+                        class="list-reset mt-4 d-flex justify-content-center flex-column flex-sm-row"
+                    >
+                        <a
+                            href="#products"
+                            class="btn btn-lg btn-light mx-2 mb-2 mb-sm-0 js-smooth-link"
+                            >Learn More</a
+                        >
+                        <a
+                            href="#pricing"
+                            class="btn btn-lg btn-primary mx-2 js-smooth-link"
+                            >Sign Up Now</a
+                        >
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="ff-hero-photo" style="display:none;">
+            <img src="/assets/images/map.png" />
+        </div>
+
+        <svg height="0">
+            <clipPath id="clipping" clipPathUnits="objectBoundingBox">
+                <path
+                    fill-rule="evenodd"
+                    d="M0,0 L1444,0 L1444,627 C1444,627 1183.11,762.899 721,762 C273.354,761.129 0,627 0,627 L0,0 Z"
+                />
+            </clipPath>
+        </svg>
+
+        <!-- Research and Insights -->
+        <section class="container section text-center">
+            <div class="row">
+                <div class="col-12 col-md-7 mx-auto">
+                    <h2 id="research" class="h1 mb-4">
+                        Analytics Platform designed for Retail and
+                        Institutional Traders
+                    </h2>
+                    <p class="text-muted">
+                        DAIX shortens the due dilgence time and provides
+                        accurate, reliable and unbiassed information for every
+                        data point that moves the Crypto Market
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- News -->
+        <section class="container section">
+            <div
+                class="d-flex mb-3 justify-content-between align-items-baseline"
+            >
+                <h2 class="h4">Newsletter</h2>
+                <a href="#"
+                    >See all news <span class="fa fa-arrow-right"></span
+                ></a>
+            </div>
+            <div class="d-flex flex-column flex-md-row mx-n2">
+                <div class="card w-md-25 px-0 mx-2 mb-5 mb-md-0">
+                    <img
+                        class="card-img-top"
+                        src="assets/images/news_1.png"
+                        alt=""
+                    />
+                    <div class="card-body">
+                        <h3 class="card-title">BBC News</h3>
+                        <p class="card-text">
+                            Some quick example text to build on the card title
+                            and make up the bulk of the card's content.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary w-100" data-toggle="modal" data-target="#newsletterModal" data-title="BBC News" data-body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet ante nec metus egestas rutrum. Nam sed auctor metus. Donec in egestas nisi.">
+							Read more
+						</button>
+                    </div>
+                </div>
+                <div class="card w-md-25 px-0 mx-2 mb-5 mb-md-0">
+                    <img
+                        class="card-img-top"
+                        src="assets/images/news_2.png"
+                        alt=""
+                    />
+                    <div class="card-body">
+                        <h3 class="card-title">Fox news</h3>
+                        <p class="card-text">
+                            Some quick example text to build on the card title
+                            and make up the bulk of the card's content.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+						<button class="btn btn-primary w-100" data-toggle="modal" data-target="#newsletterModal" data-title="Fox news" data-body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet ante nec metus egestas rutrum. Nam sed auctor metus. Donec in egestas nisi.">
+							Read more
+						</button>
+                    </div>
+                </div>
+                <div class="card w-md-25 px-0 mx-2 mb-5 mb-md-0">
+                    <img
+                        class="card-img-top"
+                        src="assets/images/news_3.jpg"
+                        alt=""
+                    />
+                    <div class="card-body">
+                        <h3 class="card-title">9 News</h3>
+                        <p class="card-text">
+                            Some quick example text to build on the card title
+                            and make up the bulk of the card's content.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+						<button class="btn btn-primary w-100" data-toggle="modal" data-target="#newsletterModal" data-title="9 News" data-body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet ante nec metus egestas rutrum. Nam sed auctor metus. Donec in egestas nisi.">
+							Read more
+						</button>
+                    </div>
+                </div>
+                <div class="card w-md-25 px-0 mx-2">
+                    <img
+                        class="card-img-top"
+                        src="assets/images/news_4.png"
+                        alt=""
+                    />
+                    <div class="card-body">
+                        <h3 class="card-title">NBC News</h3>
+                        <p class="card-text">
+                            Some quick example text to build on the card title
+                            and make up the bulk of the card's content.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+						<button class="btn btn-primary w-100" data-toggle="modal" data-target="#newsletterModal" data-title="NBC News" data-body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet ante nec metus egestas rutrum. Nam sed auctor metus. Donec in egestas nisi.">
+							Read more
+						</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Media -->
+        <section class="container-fluid section">
+            <div class="row">
+                <div
+                    class="col-md-7 bg-blue text-light align-items-center justify-content-center d-flex"
+                >
+                    <div class="p-5 w-100 w-lg-75">
+                        <h2 class="h1">
+                            Take on the Cryptocurrency Markets with our
+                            powerfull Platforms
+                        </h2>
+                        <p>
+                            DAIX platform is designed to keep up with the ups
+                            and downs of the 24/7 Cryptocurrency Market. Our
+                            desktop, web, and mobile platforms are designed for
+                            performance and built for all levels of investors
+                        </p>
+                        <a href="#technical-analysis" class="btn btn-primary js-smooth-link">
+                            See It In Action
+						</a>
+                    </div>
+                </div>
+                <div
+                    class="col-md-5 bg-secondary d-flex align-items-center py-5"
+                >
+                    <img src="assets/images/Platforms.png" alt="" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Products -->
+        <section class="container section">
+            <h2 class="h1 text-center" id="products">Why Choose DAIX?</h2>
+            <p class="h2 text-center">Made by Traders. Made for Traders.</p>
+            <p class="text-center text-muted mt-4">
+                Analyse, Strategize and Trade as DAIX provides structed
+                information for pre-trade and post-trade analytics. Keeping
+                track of Crypto markets is time consuming and tedious. DAIX is
+                one stop solution for your investment decison making process
+			</p>
+			<!-- Market Analytics -->
+            <div class="row section mb-5 mb-md-0">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <div class="position-relative">
+						<div class="js-play-button play-button">
+							<i class="fas fa-eye fa-lg"></i>
+							<span class="d-block play-button--label mt-2">View</span>
+						</div>
+                        <video
+                            src="assets/videos/example_video.mp4"
+                            preload="none"
+                            loop=""
+                            poster="assets/videos/example_video_poster.jpg"
+                        ></video>
+                    </div>
+				</div>
+                <div class="col-md-6">
+                    <h3 class="h2" id="technical-analysis">Market Analytics</h3>
+                    <p>
+                        Access 400+ technical strudies ranging from support and
+                        resistance to candlestick and profile. Real-time market
+                        data from top 10 Cryptocurrency exchanges
+                    </p>
+                    <button
+                        type="button"
+                        class="btn btn-primary w-100 w-md-auto"
+                        data-toggle="modal"
+                        data-target="#myModal"
+                    >
+                        Learn More
+                    </button>
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div>
+                                        <h4 class="lead modal-title">
+                                            Technical Analysis
+                                        </h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button
+                                            type="button"
+                                            class="close"
+                                            data-dismiss="modal"
+                                        >
+                                            &times;
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    <img
+                                        class="w-100 mb-4"
+                                        src="assets/images/T.jpg"
+                                        alt=""
+                                    />
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default"
+                                        data-dismiss="modal"
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<!-- Currency Fundamentals -->
+            <div class="row section d-flex mb-5 mb-md-0">
+                <div class="col-md-6 order-0 order-md-1 mb-3 mb-md-0">
+                    <div class="position-relative">
+                        <div class="js-play-button play-button">
+							<i class="fas fa-eye fa-lg"></i>
+							<span class="d-block play-button--label mt-2">View</span>
+                        </div>
+                        <video
+                            src="assets/videos/example_video.mp4"
+                            preload="none"
+                            loop=""
+                            poster="assets/videos/example_video_poster.jpg"
+                        ></video>
+                    </div>
+                </div>
+                <div class="col-md-6 order-1 order-md-0">
+                    <h3 class="h2">Currency Fundamentals</h3>
+                    <p>
+                        Currency profile pages present traders every critical
+                        data point about a currency, With features like
+                        Whitepaper summary, Founder's info, News, Github,
+                        Sentiment, Explorer statistics etc. the currency profile
+                        is the only page a trader needs to access before making
+                        a trade
+                    </p>
+                    <button
+                        type="button"
+                        class="btn btn-primary w-100 w-md-auto"
+                        data-toggle="modal"
+                        data-target="#myModal1"
+                    >
+                        Learn More
+                    </button>
+                    <!-- Modal -->
+                    <div id="myModal1" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <!-- Modal Content -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div>
+                                        <h4 class="lead modal-title">
+                                            Fundamental Analysis
+                                        </h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button
+                                            type="button"
+                                            class="close"
+                                            data-dismiss="modal"
+                                        >
+                                            &times;
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    <img
+                                        class="w-100 mb-4"
+                                        src="assets/images/T.jpg"
+                                        alt=""
+                                    />
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default"
+                                        data-dismiss="modal"
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<!-- Aggregated News -->
+            <div class="row section mb-5 mb-md-0">
+					<div class="col-md-6 mb-3 mb-md-0">
+						<div class="position-relative">
+							<div class="js-play-button play-button">
+								<i class="fas fa-eye fa-lg"></i>
+								<span class="d-block play-button--label mt-2">View</span>
+							</div>
+							<video
+								src="assets/videos/example_video.mp4"
+								preload="none"
+								loop=""
+								poster="assets/videos/example_video_poster.jpg"
+							></video>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<h3 class="h2">Aggregated News</h3>
+						<p>
+							DAIX accesses data from 30,000 news sources to
+							consolidate the most relevant Cryptocurrency News
+							stories moving the market. Our News Sentiment algorithum
+							analyzes articles for bulish and bearish news stories
+							for traders to get a quick snapshot of market sentiment
+						</p>
+						<button
+							type="button"
+							class="btn btn-primary w-100 w-md-auto"
+							data-toggle="modal"
+							data-target="#myModal4"
+						>
+							Learn More
+						</button>
+						<!-- Modal -->
+						<div id="myModal4" class="modal fade" role="dialog">
+							<div class="modal-dialog modal-lg">
+								<!-- Modal Content -->
+								<div class="modal-content">
+									<div class="modal-header">
+										<div>
+											<h4 class="lead modal-title">
+												News Sentiment Analysis
+											</h4>
+										</div>
+										<div class="pull-right">
+											<button
+												type="button"
+												class="close"
+												data-dismiss="modal"
+											>
+												&times;
+											</button>
+										</div>
+									</div>
+									<div class="modal-body">
+										<img
+											class="w-100 mb-4"
+											src="assets/images/T.jpg"
+											alt=""
+										/>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+									</div>
+									<div class="modal-footer">
+										<button
+											type="button"
+											class="btn btn-default"
+											data-dismiss="modal"
+										>
+											Close
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+			<!-- Explorer Statistics -->
+            <div class="row section d-flex mb-5 mb-md-0">
+					<div class="col-md-6 order-0 order-md-1 mb-3 mb-md-0">
+						<div class="position-relative">
+							<div class="js-play-button play-button">
+								<i class="fas fa-eye fa-lg"></i>
+								<span class="d-block play-button--label mt-2">View</span>
+							</div>
+							<video
+								src="assets/videos/example_video.mp4"
+								preload="none"
+								loop=""
+								poster="assets/videos/example_video_poster.jpg"
+							></video>
+						</div>
+					</div>
+					<div class="col-md-6 order-1 order-md-0">
+						<h3 class="h2">Explorer Statistics</h3>
+						<p>
+							Explorer statistics offer valuable insights into
+							adoption of a currency by the Cryptocurrency Ecosystem.
+							With statisctics like Hash rate, Transaction volume and
+							value, Mining difficulty, and Top wallet movements, DAIX
+							offers a proprietary Valuation framework
+						</p>
+						<button
+							type="button"
+							class="btn btn-primary w-100 w-md-auto"
+							data-toggle="modal"
+							data-target="#myModal3"
+						>
+							Learn More
+						</button>
+						<!-- Modal -->
+						<div id="myModal3" class="modal fade" role="dialog">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<div>
+											<h4 class="lead modal-title">
+												Explorer Statistics
+											</h4>
+										</div>
+										<div class="pull-right">
+											<button
+												type="button"
+												class="close"
+												data-dismiss="modal"
+											>
+												&times;
+											</button>
+										</div>
+									</div>
+									<div class="modal-body">
+										<img
+											class="w-100 mb-4"
+											src="assets/images/T.jpg"
+											alt=""
+										/>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+									</div>
+									<div class="modal-footer">
+										<button
+											type="button"
+											class="btn btn-default"
+											data-dismiss="modal"
+										>
+											Close
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+			<!-- Portfolio Management -->
+            <div class="row section d-flex mb-5 mb-md-0">
+					<div class="col-md-6 mb-3 mb-md-0">
+						<div class="position-relative">
+							<div class="js-play-button play-button">
+								<i class="fas fa-eye fa-lg"></i>
+								<span class="d-block play-button--label mt-2">View</span>
+							</div>
+							<video
+								src="assets/videos/example_video.mp4"
+								preload="none"
+								loop=""
+								poster="assets/videos/example_video_poster.jpg"
+							></video>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<h3 class="h2">Portfolio Management</h3>
+						<p>
+							Monitor, Simulate, Backtest and Compare using Portfolio
+							Management tools.
+						</p>
+						<button
+							type="button"
+							class="btn btn-primary w-100 w-md-auto"
+							data-toggle="modal"
+							data-target="#myModal5"
+						>
+							Learn More
+						</button>
+						<!-- Modal -->
+						<div id="myModal5" class="modal fade" role="dialog">
+							<div class="modal-dialog modal-lg">
+								<!-- Modal Content -->
+								<div class="modal-content">
+									<div class="modal-header">
+										<div>
+											<h4 class="lead modal-title">
+												Portfolio Management
+											</h4>
+										</div>
+										<div class="pull-right">
+											<button
+												type="button"
+												class="close"
+												data-dismiss="modal"
+											>
+												&times;
+											</button>
+										</div>
+									</div>
+									<div class="modal-body">
+										<img
+											class="w-100 mb-4"
+											src="assets/images/T.jpg"
+											alt=""
+										/>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+										<p>
+											There are many variations of passages of
+											Lorem Ipsum available, but the majority
+											have suffered alteration in some form,
+											by injected humour, or randomised words
+											which don't look even slightly
+											believable. If you are going
+										</p>
+									</div>
+									<div class="modal-footer">
+										<button
+											type="button"
+											class="btn btn-default"
+											data-dismiss="modal"
+										>
+											Close
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+			<!-- Encrypted Chat -->
+            <div class="row section mb-5 mb-md-0">
+                <div class="col-md-6 order-0 order-md-1 mb-3 mb-md-0">
+                    <div class="position-relative">
+						<div class="js-play-button play-button">
+							<i class="fas fa-eye fa-lg"></i>
+							<span class="d-block play-button--label mt-2">View</span>
+						</div>
+                        <video
+                            src="assets/videos/example_video.mp4"
+                            preload="none"
+                            loop=""
+                            poster="assets/videos/example_video_poster.jpg"
+                        ></video>
+                    </div>
+                </div>
+                <div class="col-md-6 order-1 order-md-0">
+                    <h3 class="h2">Encrypted Chat</h3>
+                    <p>
+                        Share insights with your inner circle securely and
+                        privately with Encrypted messenger. DAIX all in one
+                        messenger allows integration wirh Telegram and Whatsapp
+                    </p>
+                    <button
+                        type="button"
+                        class="btn btn-primary w-100 w-md-auto"
+                        data-toggle="modal"
+                        data-target="#myModal2"
+                    >
+                        Learn More
+                    </button>
+                    <!-- Modal -->
+                    <div id="myModal2" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <!-- Modal Content -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div>
+                                        <h4 class="lead modal-title">
+                                            DAIX Community
+                                        </h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button
+                                            type="button"
+                                            class="close"
+                                            data-dismiss="modal"
+                                        >
+                                            &times;
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    <img
+                                        class="w-100 mb-4"
+                                        src="assets/images/T.jpg"
+                                        alt=""
+                                    />
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                    <p>
+                                        There are many variations of passages of
+                                        Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form,
+                                        by injected humour, or randomised words
+                                        which don't look even slightly
+                                        believable. If you are going
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default"
+                                        data-dismiss="modal"
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="container-fluid bg-blue">
+            <div class="container py-5 text-center w-lg-75 mx-lg-auto" id="pricing">
+                <h2 class="display-4 text-light">
+                    Select a Plan
+				</h2>
+				<div class="mt-4 d-flex align-items-center justify-content-center">
+					<div class="text-white js-currency">USD</div>
+					<label class="switch mx-3 mb-0">
+						<input type="checkbox" id="hideshow">
+						<span class="slider round"></span>
+					</label>
+					<div class="text-white js-currency opacity-5">BTC</div>
+				</div>
+                <div
+                    class="d-flex flex-column flex-md-row align-items-stretch justify-content-center mx-n2 mt-4"
+                >
+                    <div class="card w-md-50 mx-2 mb-4 mb-md-0">
+                        <h3 class="card-header">Retail</h3>
+                        <div class="card-body align-items-center d-flex justify-content-center">
+							<p class="h3 font-weight-bold mb-0 js-usd">$100/mo</p>
+							<p class="h3 font-weight-bold mb-0 js-btc d-none">1 BTC <span class="d-block h6 mb-0 mt-1">Lifetime access</span></p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                Fundamental Analysis
+                            </li>
+                            <li class="list-group-item">Technical Analysis</li>
+                            <li class="list-group-item">
+                                Portfolio Management
+                            </li>
+                            <li class="list-group-item">News Sentiment</li>
+                            <li class="list-group-item">Currency Discover</li>
+                        </ul>
+                        <div class="card-footer">
+                            <button
+                                type="button"
+                                class="btn btn-primary w-100 text-light"
+                            >
+                                Select Plan
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card w-md-50 mx-2 mb-4 mb-md-0" id="content1">
+                        <h3 class="card-header">Institutional</h3>
+                        <div class="card-body align-items-center d-flex justify-content-center"">
+							<p class="h3 font-weight-bold mb-0 js-usd">$500/mo</p>
+							<p class="h3 font-weight-bold mb-0 js-btc d-none">5 BTC <span class="d-block h6 mb-0 mt-1">Lifetime access</span></p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">All retail features</li>
+                            <li class="list-group-item">Real-Time Data Feeds</li>
+                            <li class="list-group-item">Access to Currency Founders</li>
+                            <li class="list-group-item">DAIX Email Accounts</li>
+                            <li class="list-group-item">Development Support</li>
+                        </ul>
+                        <div class="card-footer">
+                            <button
+                                type="button"
+                                class="btn btn-primary w-100 text-light"
+                            >
+                                Select Plan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div class="container section">
+            <div class="row text-center text-md-left">
+                <div class="col-md-2">
+                    <h2 class="h5 font-weight-bold">Section Title</h2>
+                    <ul class="list-reset">
+                        <li><a href="#" class="text-muted">FAQ</a></li>
+                        <li>
+                            <a href="#" class="text-muted">Client Log-in</a>
+                        </li>
+                        <li>
+                            <a href="#pricing" class="text-muted js-smooth-link"
+                                >Pricing</a
+                            >
+                        </li>
+                        <li><a href="#" class="text-muted" data-toggle="modal" data-target="#contactModal">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mt-3 mt-md-0">
+                    <h2 class="h5 font-weight-bold">Section Title</h2>
+                    <ul class="list-reset">
+                        <li><a href="#" class="text-muted">About Us</a></li>
+                        <li><a href="#" class="text-muted">Call Us</a></li>
+                        <li>
+                            <a href="#" class="text-muted">Terms of Service</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-muted">Privacy Policy</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mt-3 mt-md-0">
+                    <h2 class="h5 font-weight-bold">Follow Us</h2>
+                    <ul class="list-reset">
+                        <li><a href="#" class="text-muted">@DAIX</a></li>
+                        <li><a href="#" class="text-muted">#DAIXSlogan</a></li>
+                    </ul>
+                    <ul
+                        class="list-reset justify-content-center justify-content-md-start d-flex mt-2"
+                    >
+                        <li>
+                            <a
+                                href="https://www.linkedin.com/company/digital-assets-information-exchange/about/"
+                            >
+                                <i class="fab fa-linkedin fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="ml-2">
+                            <a href="https://twitter.com/DAIX_IO">
+                                <i class="fab fa-twitter fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="ml-2">
+                            <a href="www.telegram.com">
+                                <i class="fab fa-telegram fa-lg"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 mt-3 mt-md-0">
+                    <h2 class="h5 font-weight-bold">
+                        Sign up for our newsletter
+                    </h2>
+                    <form>
+                        <div class="form-group mt-3">
+                            <input
+                                class="form-control"
+                                type="email"
+                                name="domain"
+                                placeholder="yourname@domain.com"
+                            />
+						</div>
+						<button
+							type="submit"
+							class="btn btn-primary w-100 w-md-auto"
+						>
+							Subscribe
+						</button>
+					</form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Top -->
+        <div class="back-to-top">
+            <button
+                type="button"
+                class="btn btn-primary pull-right"
+                id="back-to-top"
+                role="presentation"
+            >
+                <i class="fas fa-arrow-up"></i>
+            </button>
+        </div>
+
+        <!-- Ticker -->
+        <div
+            class="footer d-md-block d-none fixed-bottom bg-light"
+            id="js-ticker"
+		>
+			<div class="d-flex align-items-center p-3">
+				<button
+					class="btn btn-primary footer__btn"
+					id="js-ticker-button"
+				>
+					<span class="fa fa-plus" aria-hidden="true"></span>
+				</button>
+				<div class="pl-5 ml-5 w-100 text-secondary">
+					<div class="d-flex">
+						<div class="flex-normal w-25">
+							<i class="fab fa-bitcoin"></i> Bitcoin
+							<span class="text-danger ml-1"><span class="fa-caret-down fa"></span> $3,021.51</span>
+						</div>
+						<div class="flex-normal w-25">
+							<i class="fab fa-ethereum"></i> Ethereum
+							<span class="ml-1 text-danger"><span class="fa-caret-down fa"></span> $116.77</span>
+						</div>
+						<div class="flex-normal w-25">
+							<i class="fab fa-ethereum"></i> Ethereum Classic
+							<span class="ml-1 text-danger"><span class="fa-caret-down fa"></span> $4.41</span>
+						</div>
+						<div class="flex-normal w-25">
+							<i class="fab fa-ethereum"></i> Litecoin
+							<span class="ml-1 text-danger"><span class="fa-caret-up fa"></span> $30.75</span>
+						</div>
+					</div>
+					<div class="d-flex-cc mt-3 currency" style="display: none;">
+						<div class="flex-normal w-25">
+							<i class="fab fa-bitcoin"></i> Bitcoin Cash
+							<span class="ml-1 text-danger"><span class="fa-caret-down fa"></span> $121.89</span>
+						</div>
+						<div class="flex-normal w-25">
+							<i class="fab fa-ethereum"></i> Zcash
+							<span class="ml-1 text-danger"><span class="fa-caret-up fa"></span> $51.81</span>
+						</div>
+						<div class="flex-normal w-25">
+							<i class="fab fa-ethereum"></i> EOS
+							<span class="ml-1 text-danger"><span class="fa-caret-up fa"></span> $2.36</span>
+						</div>
+						<div class="flex-normal w-25">
+							<i class="fab fa-ethereum"></i> Dogecoin
+							<span class="ml-1 text-danger"><span class="fa-caret-up fa"></span> $0.0021</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Newsletter Modal -->
+		<div class="modal fade" id="newsletterModal" tabindex="-1" role="dialog" aria-labelledby="newsletterModal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="newsletterModal"></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn"
+							data-dismiss="modal"
+						>
+							Close
+						</button>
+					</div>
+				</div>
+			</div>
+			</div>
+
+		<!-- Contact Us Modal -->
+		<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="contactModalLabel">Contact Us</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="formContactName">Your Name</label>
+							<input type="text" class="form-control" id="formContactName" required />
+						</div>
+						<div class="form-group">
+							<label for="formContactEmail">Your Email</label>
+							<input type="email" class="form-control" id="formContactEmail" required />
+						</div>
+						<div class="form-group">
+							<label for="formContactMessage">Your message</label>
+							<textarea class="form-control" id="formContactMessage" rows="3" required></textarea>
+						</div>
+						<button type="submit" class="btn btn-primary float-right">Send</button>
+					</form>
+				</div>
+			</div>
+			</div>
+			</div>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+		<script src="assets/js/vendor/bootstrap.min.js"></script>
+		<script src="assets/js/vendor/bootstrap3-typeahead.min.js"></script>
+		<script src="node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+		<script type="text/javascript" src="assets/js/daix.js"></script>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+.section {
+    margin-top: $spacer * 2;
+    margin-bottom: $spacer * 2;
+}
+
+@include media-breakpoint-up(sm) {
+    .section {
+        margin-top: $spacer * 6;
+        margin-bottom: $spacer * 6;
+    }
+    .w-sm-50 {
+        width: 50% !important;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .w-md-25 {
+        width: 25% !important;
+    }
+    .w-md-33 {
+        width: 33.3% !important;
+    }
+    .w-md-50 {
+        width: 50% !important;
+    }
+    .w-md-auto {
+        width: auto !important;
+    }
+}

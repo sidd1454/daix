@@ -1,0 +1,4 @@
+node_modules
+dist
+assets/scss/bootstrap
+assets/css/app.css
